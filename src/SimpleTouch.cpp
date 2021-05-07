@@ -102,7 +102,7 @@ void setup()
 
   MPR121.setFFI(FFI_10);
   MPR121.setSFI(SFI_10);
-  MPR121.setGlobalCDT(CDT_8US); // reasonable for larger capacitances  ******** had to rasie this to get things to work right for the size of the sculpture231
+  MPR121.setGlobalCDT(CDT_16US); // reasonable for larger capacitances  ******** had to rasie this to get things to work right for the size of the sculpture231
 
   digitalWrite(LED_BUILTIN, HIGH); // switcha on user LED while auto calibrating electrodes
   delay(1000);
