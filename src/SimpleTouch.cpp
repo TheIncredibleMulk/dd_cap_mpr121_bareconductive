@@ -91,20 +91,20 @@ void setup()
   {
     //MPR121.restoreSavedThresholds();
     MPR121_Datastream.begin(&Serial);
-    MPR121.setTouchThreshold(50); // this is the touch threshold - setting it low makes it more like a proximity trigger, default value is 40 for touch
-    MPR121.setReleaseThreshold(40);
+    MPR121.setTouchThreshold(35); // this is the touch threshold - setting it low makes it more like a proximity trigger, default value is 40 for touch
+    MPR121.setReleaseThreshold(25);
   }
   else
   {
-    MPR121.setTouchThreshold(50);   // this is the touch threshold - setting it low makes it more like a proximity trigger, default value is 40 for touch
-    MPR121.setReleaseThreshold(40); // this is the release threshold - must ALWAYS be smaller than the touch threshold, default value is 20 for touch
+    MPR121.setTouchThreshold(40);   // this is the touch threshold - setting it low makes it more like a proximity trigger, default value is 40 for touch
+    MPR121.setReleaseThreshold(20); // this is the release threshold - must ALWAYS be smaller than the touch threshold, default value is 20 for touch
   }
 
   MPR121.setFFI(FFI_10);
   MPR121.setSFI(SFI_10);
-  MPR121.setGlobalCDT(CDT_4US); // reasonable for larger capacitances
+  MPR121.setGlobalCDT(CDT_8US); // reasonable for larger capacitances  ******** had to rasie this to get things to work right for the size of the sculpture231
 
-  digitalWrite(LED_BUILTIN, HIGH); // switch on user LED while auto calibrating electrodes
+  digitalWrite(LED_BUILTIN, HIGH); // switcha on user LED while auto calibrating electrodes
   delay(1000);
   MPR121.autoSetElectrodes(); // autoset all electrode settings
   digitalWrite(LED_BUILTIN, LOW);

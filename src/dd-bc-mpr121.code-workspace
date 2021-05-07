@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"mysqlOptions": {
+					"authProtocol": "default"
+				},
+				"previewLimit": 50,
+				"server": " prd-candela-rms-do-user-8095265-0.b.db.ondigitalocean.com",
+				"port": 25060,
+				"driver": "MySQL",
+				"name": "RMS-SQL",
+				"group": "RMS",
+				"database": "production_rms",
+				"username": "andrew",
+				"password": " bz4frwwnehla8fzl "
+			}
+		]
+	}
+}
