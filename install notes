@@ -1,0 +1,26 @@
+install notes for 121 board
+
+BEAM1:
+  
+BEAM2:
+  COLOR: 
+  
+BEAM3:
+  COLOR: SILVER
+  BOARD#: 2?
+  SIZE: 
+    SMALLEST
+  TOUCH: 40
+  RELEASE: 30
+  CDT: 16us
+  
+BEAM4:
+  COLOR: BLACK
+  BOARD#: 5
+  SIZE: 
+    SHORTER BUT SAME DIAMETER
+  TOUCH: 30
+  RELEASE: 20
+  CDT: 16us
+BEAM5:
+  
