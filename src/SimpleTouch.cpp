@@ -44,7 +44,9 @@ const uint32_t BAUD_RATE = 115200;
 const uint8_t MPR121_ADDR = 0x5A; // 0x5C is the MPR121 I2C address on the Bare Touch Board --- 0x5A is the MPR121 I2C address on the adafruit breakout board
 const uint8_t MPR121_INT = 2;     // pin 4 is the MPR121 interrupt on the Bare Touch Board
 
-//LED output
+//State Machine Counter
+long PreviousMillis = 0;
+long Interval = 500;
 
 // MPR121 datastream behaviour constants
 const bool MPR121_DATASTREAM_ENABLE = false;
@@ -139,4 +141,21 @@ void loop()
     MPR121_Datastream.update();
     delay(100);
   }
+
+  // State machine reset for recalibrate
+  long start = millis();
+  long currentMillis = millis();
+  if (currentMillis - PreviousMillis > Interval)
+  {
+    calibrate();
+  }
+}
+
+void calibrate()
+{
+  Serial.print("calibrating...");
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+  MPR121.autoSetElectrodes(); //autoset all electrode settings
+  digitalWrite(LED_BUILTIN, LOW);
 }
