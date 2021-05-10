@@ -46,7 +46,7 @@ const uint8_t MPR121_INT = 2;     // pin 4 is the MPR121 interrupt on the Bare T
 
 //State Machine Counter
 long PreviousMillis = 0;
-long Interval = 500;
+long Interval = 5000;
 
 // MPR121 datastream behaviour constants
 const bool MPR121_DATASTREAM_ENABLE = false;
@@ -104,7 +104,7 @@ void setup()
 
   MPR121.setFFI(FFI_10);
   MPR121.setSFI(SFI_10);
-  MPR121.setGlobalCDT(CDT_32US); // reasonable for larger capacitances  ******** had to rasie this to get things to work right for the size of the sculpture
+  MPR121.setGlobalCDT(CDT_4US); // reasonable for larger capacitances  ******** had to rasie this to get things to work right for the size of the sculpture
 
   digitalWrite(LED_BUILTIN, HIGH); // switch a on user LED while auto calibrating electrodes
   delay(1000);
