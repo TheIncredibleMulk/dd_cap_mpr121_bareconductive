@@ -115,7 +115,7 @@ void setup()
 
   MPR121.setFFI(FFI_10);
   MPR121.setSFI(SFI_10);
-  MPR121.setGlobalCDT(CDT_4US); // reasonable for larger capacitances  ******** had to rasie this to get things to work right for the size of the sculpture
+  MPR121.setGlobalCDT(CDT_32US); // reasonable for larger capacitances  ******** had to rasie this to get things to work right for the size of the sculpture
 
   Serial.print("setup ");
   calibrate();
