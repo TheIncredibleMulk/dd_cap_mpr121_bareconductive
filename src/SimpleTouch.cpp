@@ -45,11 +45,22 @@ const uint8_t MPR121_ADDR = 0x5A; // 0x5C is the MPR121 I2C address on the Bare 
 const uint8_t MPR121_INT = 2;     // pin 4 is the MPR121 interrupt on the Bare Touch Board
 
 //State Machine Counter
-long PreviousMillis = 0;
-long Interval = 5000;
+long currentMillis;
+long previousMillis = millis();
+long interval = 300000;
 
 // MPR121 datastream behaviour constants
 const bool MPR121_DATASTREAM_ENABLE = false;
+
+void calibrate()
+{
+  Serial.println("calibrating...");
+  digitalWrite(LED_BUILTIN, HIGH);
+  MPR121.autoSetElectrodes(); //autoset all electrode settings
+  delay(1000);
+  digitalWrite(LED_BUILTIN, LOW);
+  Serial.println("done.");
+}
 
 void setup()
 {
@@ -106,10 +117,8 @@ void setup()
   MPR121.setSFI(SFI_10);
   MPR121.setGlobalCDT(CDT_4US); // reasonable for larger capacitances  ******** had to rasie this to get things to work right for the size of the sculpture
 
-  digitalWrite(LED_BUILTIN, HIGH); // switch a on user LED while auto calibrating electrodes
-  delay(1000);
-  MPR121.autoSetElectrodes(); // autoset all electrode settings
-  digitalWrite(LED_BUILTIN, LOW);
+  Serial.print("setup ");
+  calibrate();
 }
 
 void loop()
@@ -142,20 +151,17 @@ void loop()
     delay(100);
   }
 
-  // State machine reset for recalibrate
-  long start = millis();
-  long currentMillis = millis();
-  if (currentMillis - PreviousMillis > Interval)
-  {
-    calibrate();
-  }
-}
+  // Serial.print("current: ");
+  // Serial.println(currentMillis);
+  // Serial.print("previous: ");
+  // Serial.println(previousMillis);
 
-void calibrate()
-{
-  Serial.print("calibrating...");
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(1000);
-  MPR121.autoSetElectrodes(); //autoset all electrode settings
-  digitalWrite(LED_BUILTIN, LOW);
+  // State machine reset for recalibrate
+  currentMillis = millis();
+  if (currentMillis - previousMillis > interval)
+  {
+    previousMillis = currentMillis;
+    calibrate();
+    previousMillis = currentMillis;
+  }
 }
