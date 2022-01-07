@@ -91,13 +91,13 @@ void setup()
   {
     //MPR121.restoreSavedThresholds();
     MPR121_Datastream.begin(&Serial);
-    MPR121.setTouchThreshold(30); // this is the touch threshold - setting it low makes it more like a proximity trigger, default value is 40 for touch
-    MPR121.setReleaseThreshold(20);
+    MPR121.setTouchThreshold(25); // this is the touch threshold - setting it low makes it more like a proximity trigger, default value is 40 for touch - 1/7/21 - adjusted to 25 from 30
+    MPR121.setReleaseThreshold(15); // 1/7/21 - adjusted to 15 from 20
   }
   else
   {
-    MPR121.setTouchThreshold(30);   // this is the touch threshold - setting it low makes it more like a proximity trigger, default value is 40 for touch
-    MPR121.setReleaseThreshold(20); // this is the release threshold - must ALWAYS be smaller than the touch threshold, default value is 20 for touch
+    MPR121.setTouchThreshold(25);   // this is the touch threshold - setting it low makes it more like a proximity trigger, default value is 40 for touch - 1/7/21 - adjusted to 25 from 30
+    MPR121.setReleaseThreshold(15); // this is the release threshold - must ALWAYS be smaller than the touch threshold, default value is 20 for touch - 1/7/21 - adjusted to 15 from 20
   }
 
   MPR121.setFFI(FFI_10);
